@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="https://"><meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход и Регистрация</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='styles/auth.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="tab-container">
+        <div class="tab active" onclick="switchTab('login')">Авторизация</div>
+        <div class="tab" onclick="switchTab('register')">Регистрация</div>
+    </div>
+
+    <div class="form-container">
+        <div id="login" class="active">
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                    <div class="error">Неверный формат email</div>
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" required>
+                    <div class="error">Пароль должен содержать минимум 6 символов</div>
+                </div>
+                <button type="submit">Войти</button>
+            </form>
+        </div>
+
+        <div id="register">
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                    <div class="error">Неверный формат email</div>
+                </div>
+                <div class="form-group">
+                    <label>Имя</label>
+                    <input type="text" required>
+                    <div class="error">Имя должно содержать минимум 2 символа</div>
+                </div>
+                <div class="form-group">
+                    <label>Пароль</label>
+                    <input type="password" required>
+                    <div class="error">Пароль должен содержать минимум 6 символов</div>
+                </div>
+                <div class="form-group">
+                    <label>Подтверждение пароля</label>
+                    <input type="password" required>
+                    <div class="error">Пароли не совпадают</div>
+                </div>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', path='js/auth.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="https://">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='styles/chat.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="users-list" id="userList">
+            <div class="user-item" data-user-id="{{ user.id }}">
+                Избранное
+            </div>
+            {% for chat in users_all %}
+                {% if chat.id != user.id %}
+                    <div class="user-item" data-user-id="{{ chat.id }}">
+                        {{ chat.name }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="chat-area">
+            <div class="chat-header" id="chatHeader">
+                <span id="headerText">Выберите пользователя для начала чата</span>
+                <button class="logout-button" id="logoutButton" onclick="logout()">Выход</button>
+            </div>
+            <div class="messages" id="messages">
+                <div class="empty-chat-message">
+                    <div class="empty-chat-icon">💬</div>
+                    <div>Выберите чат для общения</div>
+                </div>
+            </div>
+            <div class="message-input-container">
+                <input type="text" class="message-input" id="messageInput" placeholder="Введите сообщение..." disabled>
+                <button class="send-button" id="sendButton" disabled>Отправить</button>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const currentUserId = parseInt("{{ user.id }}", 10);
+</script>
+
+<script src="{{ url_for('static', path='js/chat.js') }}"></script>
+</body>
+</html>
